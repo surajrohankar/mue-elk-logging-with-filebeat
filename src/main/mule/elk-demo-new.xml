@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d3ce718b-4405-499d-ac8c-f99af0482028" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="elk-demo-newFlow" doc:id="d11f6907-455b-4b12-abc8-f9d920068ce3" >
+		<http:listener doc:name="Listener" doc:id="a8fc47e4-ceff-4489-9ac6-182b744685d8" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-payload value='#["hi elk"]' doc:name="Set Payload" doc:id="475a1a1a-332e-40bd-9a98-ce5295132de6" />
+		<logger level="INFO" doc:name="Logger" doc:id="beea698f-936e-44fd-857d-91cabf37b7c0" message="#[payload]"/>
+	</flow>
+</mule>
